@@ -13,7 +13,7 @@
     <!-- Selector de Rol -->
     <div id="role-selector" class="role-selector">
         <h1 style="color: var(--primary); font-size: 3rem;">ITSQ<span style="color: var(--accent)">MET</span></h1>
-        <p>Gastro-Connect: 90min Challenge</p>
+        <p>Gastro-Connect</p>
 
         <br>
 
@@ -54,7 +54,7 @@
             </div>
 
             <div class="fab-cart" onclick="app.verCarrito()">
-                🛒 <span id="cart-count">0</span> | Enviar Pedido
+                <span id="cart-count">0</span> | Enviar Pedido
             </div>
         </div>
     </div>
@@ -66,12 +66,12 @@
                 <h2 style="color: var(--accent)">Monitor de Cocina</h2>
                 <div id="clock" style="font-family: monospace; font-size: 1.2rem;">00:00:00</div>
                 <div style="font-size: 0.9rem; color: var(--primary); margin-top: 5px;">
-                    🏆 Top: <span id="top-plato" style="font-weight: bold;">-</span>
+                    Top: <span id="top-plato" style="font-weight: bold;">-</span>
                 </div>
             </div>
             <button onclick="app.cerrarCaja()"
                 style="padding: 0.5rem 1rem; background: var(--primary); border: none; border-radius: 0.5rem; color: white; cursor: pointer; font-weight: bold;">
-                💰 Cerrar Caja
+                Cerrar Caja
             </button>
         </header>
 
@@ -83,21 +83,21 @@
         </div>
 
         <div class="footer-copyright">
-            Desarrollado por la Carrera de Desarrollo de Software - ITSQMET 2026
+            Desarrollado por la Carrera de Desarrollo de Software
         </div>
     </div>
 
     <!-- Modal Cierre de Caja -->
     <div id="modal-cierre" class="modal-overlay">
         <div class="modal-content">
-            <h2 style="color: var(--primary)">✨ Cierre Exitoso</h2>
+            <h2 style="color: var(--primary)">Cierre Exitoso</h2>
             <div style="font-size: 3rem; font-weight: bold; color: var(--accent); margin: 1rem 0;">
                 $<span id="modal-total">0.00</span>
             </div>
             <p>Ventas Totales del Día</p>
             <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
                 <button onclick="app.imprimirElemento(document.querySelector('.modal-content'))"
-                    class="action-btn print-btn">🖨️ Imprimir Reporte</button>
+                    class="action-btn print-btn">Imprimir Reporte</button>
                 <button onclick="document.getElementById('modal-cierre').style.display='none'"
                     class="action-btn close-btn">Cerrar</button>
             </div>

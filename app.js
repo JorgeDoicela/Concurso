@@ -60,11 +60,11 @@ const app = {
 
         if (rol === 'mesero') {
             document.getElementById('view-mesero').style.display = 'block';
-            document.title = "📱 Mesero - GastroSync";
+            document.title = "Mesero - GastroSync";
             app.cargarMesas(); // Ahora carga mesas primero
         } else {
             document.getElementById('view-cocina').style.display = 'block';
-            document.title = "👨‍🍳 Cocina - GastroSync";
+            document.title = "Cocina - GastroSync";
             app.iniciarEscuchaCocina();
         }
     },
@@ -85,7 +85,7 @@ const app = {
             card.onclick = () => app.seleccionarMesa(mesa);
 
             // Icono según estado
-            let icono = "🟩"; // Libre
+            let icono = "🟢"; // Libre
             if (mesa.estado === 'ocupada') icono = "🔴";
             if (mesa.estado === 'pagando') icono = "🟡";
 
@@ -312,7 +312,7 @@ const app = {
             </div>
             <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
                 <button onclick="app.imprimirElemento(this.closest('.order-ticket'))" style="flex: 1; padding: 0.5rem; background: var(--primary); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">🖨️ Imprimir</button>
-                <button onclick="app.completarPedido(${pedido.id}, this)" style="flex: 1; padding: 0.5rem; background: var(--text-muted); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">✅ Completar</button>
+                <button onclick="app.completarPedido(${pedido.id}, this)" style="flex: 1; padding: 0.5rem; background: var(--text-muted); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">Completar</button>
             </div>
         `;
 
