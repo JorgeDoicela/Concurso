@@ -130,10 +130,12 @@ const app = {
 
         // 2. Imprimir
         // No necesitamos timeouts raros porque el DOM es síncrono y el CSS maneja la visibilidad
-        window.print();
+        setTimeout(() => {
+            window.print();
+        }, 100);
 
         // 3. Limpiar después (Opcional, pero bueno para mantener el DOM limpio)
-        stagingArea.innerHTML = '';
+        // stagingArea.innerHTML = ''; // Comentado para evitar que se limpie antes de tiempo
     },
 
     // --- Funciones de Pedido ---
@@ -309,7 +311,7 @@ const app = {
                 Total: $${pedido.total.toFixed(2)}
             </div>
             <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                <button onclick="window.print()" style="flex: 1; padding: 0.5rem; background: var(--primary); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">🖨️ Imprimir</button>
+                <button onclick="app.imprimirElemento(this.closest('.order-ticket'))" style="flex: 1; padding: 0.5rem; background: var(--primary); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">🖨️ Imprimir</button>
                 <button onclick="app.completarPedido(${pedido.id}, this)" style="flex: 1; padding: 0.5rem; background: var(--text-muted); border: none; border-radius: 0.5rem; cursor: pointer; color: #fff;">✅ Completar</button>
             </div>
         `;

@@ -267,40 +267,39 @@ body {
 
 /* --- Estilos de Impresión Finales --- */
 @media print {
-
-    /* 1. Ocultar TODO el contenido principal de la APP */
-    body>*:not(#print-area) {
+    /* 1. Ocultar todo excepto el área de impresión */
+    body > *:not(#print-area) {
         display: none !important;
     }
 
-    /* 2. Mostrar SOLO el Área de Impresión */
+    /* 2. Mostrar área de impresión */
     #print-area {
         display: block !important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 80mm;
-        /* Ancho Ticket */
+        position: static !important; /* Flujo normal */
+        width: 100%;
         margin: 0;
-        padding: 0;
+        padding: 20px;
         background: white;
-        font-family: 'Courier New', monospace;
+        color: black;
     }
 
-    /* 3. Estilos del Ticket Impreso */
+    /* 3. Estilos simples para el ticket */
     #print-area .order-ticket {
-        border: none;
-        box-shadow: none;
-        padding: 5px;
+        border: 1px solid #000;
+        padding: 10px;
+        max-width: 80mm; /* Ancho típico de ticket */
+        margin: 0 auto; /* Centrado si es PDF A4, o izquierda si es ticket */
+        font-family: monospace;
     }
 
     #print-area .order-header {
         text-align: center;
-        border-bottom: 2px dashed #000;
+        border-bottom: 1px dashed #000;
+        padding-bottom: 5px;
         margin-bottom: 10px;
     }
 
-    #print-area .order-items-list {
+    #print-area ul {
         list-style: none;
         padding: 0;
     }
@@ -311,17 +310,17 @@ body {
         margin-bottom: 5px;
     }
 
-    #print-area .total-line {
+    #print-area .total-line,
+    #print-area .order-items-list + div { /* Select total div */
         border-top: 1px solid #000;
         text-align: right;
         margin-top: 10px;
+        padding-top: 5px;
         font-weight: bold;
     }
 
-    /* Ocultar botones e interfaces */
-    #print-area button,
-    #print-area .action-btn,
-    #print-area .fab-cart {
+    /* Ocultar botones */
+    button, .action-btn, .fab-cart {
         display: none !important;
     }
 }
