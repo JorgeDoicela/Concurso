@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroSync | Realtime Order System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Selector de Rol -->
+    <div id="role-selector" class="role-selector">
+        <h1 style="color: var(--primary); font-size: 3rem;">ITSQ<span style="color: var(--accent)">MET</span></h1>
+        <p>Gastro-Connect: 90min Challenge</p>
+
+        <br>
+
+        <button class="role-btn" onclick="app.seleccionarRol('mesero')">Mesero</button>
+        <div style="height: 1rem;"></div>
+        <button class="role-btn" onclick="app.seleccionarRol('cocina')">Cocina</button>
+    </div>
+
+    <!-- Vista Mesero -->
+    <div id="view-mesero" class="app-container">
+        <div class="inst-header">
+            <h2 style="color: var(--primary); font-weight: 700;">ITSQ<span
+                    style="color: var(--accent-orange-start)">MET</span></h2>
+        </div>
+
+        <header>
+            <h2 style="color: var(--primary)">Mesas</h2>
+            <button onclick="app.cerrarSesion()"
+                style="background:none; border:none; color:var(--text-muted); cursor:pointer;">↩ Salir</button>
+        </header>
+
+        <!-- Mapa de Mesas -->
+        <div id="tables-grid" class="tables-grid">
+            <!-- Inyectado por JS -->
+        </div>
+
+        <!-- Sección Menú (Oculta al inicio) -->
+        <div id="menu-section">
+            <header>
+                <h3 style="color: var(--accent)">Tomando orden: <span id="mesa-activa-nombre"></span></h3>
+                <button onclick="app.volverMesas()"
+                    style="padding: 0.5rem 1rem; background: var(--glass-border); color: white; border: none; border-radius: 0.5rem; cursor: pointer;">↩
+                    Volver a Mesas</button>
+            </header>
+
+            <div id="menu-grid" class="menu-grid">
+                <!-- Items inyectados por JS -->
+            </div>
+
+            <div class="fab-cart" onclick="app.verCarrito()">
+                🛒 <span id="cart-count">0</span> | Enviar Pedido
+            </div>
+        </div>
+    </div>
+
+    <!-- Vista Cocina -->
+    <div id="view-cocina" class="app-container">
+        <header>
+            <div>
+                <h2 style="color: var(--accent)">Monitor de Cocina</h2>
+                <div id="clock" style="font-family: monospace; font-size: 1.2rem;">00:00:00</div>
+                <div style="font-size: 0.9rem; color: var(--primary); margin-top: 5px;">
+                    🏆 Top: <span id="top-plato" style="font-weight: bold;">-</span>
+                </div>
+            </div>
+            <button onclick="app.cerrarCaja()"
+                style="padding: 0.5rem 1rem; background: var(--primary); border: none; border-radius: 0.5rem; color: white; cursor: pointer; font-weight: bold;">
+                💰 Cerrar Caja
+            </button>
+        </header>
+
+        <div id="kitchen-orders" class="orders-container">
+            <!-- Pedidos inyectados por evento Storage -->
+            <p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin-top: 3rem;">
+                Esperando nuevos pedidos...
+            </p>
+        </div>
+
+        <div class="footer-copyright">
+            Desarrollado por la Carrera de Desarrollo de Software - ITSQMET 2026
+        </div>
+    </div>
+
+    <!-- Modal Cierre de Caja -->
+    <div id="modal-cierre" class="modal-overlay">
+        <div class="modal-content">
+            <h2 style="color: var(--primary)">✨ Cierre Exitoso</h2>
+            <div style="font-size: 3rem; font-weight: bold; color: var(--accent); margin: 1rem 0;">
+                $<span id="modal-total">0.00</span>
+            </div>
+            <p>Ventas Totales del Día</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                <button onclick="app.imprimirElemento(document.querySelector('.modal-content'))"
+                    class="action-btn print-btn">🖨️ Imprimir Reporte</button>
+                <button onclick="document.getElementById('modal-cierre').style.display='none'"
+                    class="action-btn close-btn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

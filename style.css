@@ -1,0 +1,270 @@
+/* style.css - 90min Speedrun Version */
+/* @import removed for Offline Compatibility */
+
+:root {
+    --primary: #002B5B;
+    /* Azul Institucional */
+    --accent: #f37520;
+    /* Naranja Vibrante */
+    --bg: #f4f6f9;
+    /* Fondo Gris Suave */
+    --white: #ffffff;
+    --text: #333;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    /* System Fonts */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    padding-bottom: 50px;
+}
+
+/* --- Layout --- */
+.app-container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+/* --- Header & Nav --- */
+.inst-header {
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+    margin-bottom: 20px;
+    color: var(--primary);
+    padding: 10px;
+}
+
+.role-selector {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary), #0a1e3f);
+    color: var(--white);
+}
+
+.role-btn {
+    padding: 15px 40px;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: var(--white);
+    color: var(--primary);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.role-btn:hover {
+    transform: translateY(-3px);
+    background: var(--accent);
+    color: var(--white);
+}
+
+/* --- Grid Mesas --- */
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.table-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: var(--shadow);
+    background: var(--white);
+}
+
+.table-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+}
+
+.table-card.libre {
+    border-top: 5px solid #28a745;
+}
+
+.table-card.ocupada {
+    border-top: 5px solid #dc3545;
+    background: #fff5f5;
+}
+
+.table-card.pagando {
+    border-top: 5px solid var(--accent);
+}
+
+/* --- Menu & Productos --- */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.product-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:active {
+    background: var(--accent);
+}
+
+/* --- Cocina --- */
+.order-ticket {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.order-ticket.flash-effect {
+    animation: flash 1s;
+}
+
+@keyframes flash {
+    0% {
+        background: var(--accent)
+    }
+
+    100% {
+        background: var(--white)
+    }
+}
+
+.fab-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(243, 117, 32, 0.4);
+}
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+    .tables-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* --- Modal Cierre --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 43, 91, 0.8);
+    /* Azul semi-transparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.print-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.close-btn {
+    background: #eee;
+    color: var(--text);
+}
+
+/* --- Print (Thermal Ticket Style) --- */
+/* --- Print Overlay (Default Hidden) --- */
+#print-overlay {
+    display: none;
+}
+
+/* --- Imprimir: Se maneja via JS (Popup) para evitar problemas de rendering --- */
+@media print {
+    body {
+        display: none;
+    }
+
+    /* Fallback por si alguien da Ctrl+P */
+}
