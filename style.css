@@ -260,11 +260,68 @@ body {
     display: none;
 }
 
-/* --- Imprimir: Se maneja via JS (Popup) para evitar problemas de rendering --- */
+/* --- Print Staging Area (Default Hidden) --- */
+#print-area {
+    display: none;
+}
+
+/* --- Estilos de Impresión Finales --- */
 @media print {
-    body {
-        display: none;
+
+    /* 1. Ocultar TODO el contenido principal de la APP */
+    body>*:not(#print-area) {
+        display: none !important;
     }
 
-    /* Fallback por si alguien da Ctrl+P */
+    /* 2. Mostrar SOLO el Área de Impresión */
+    #print-area {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80mm;
+        /* Ancho Ticket */
+        margin: 0;
+        padding: 0;
+        background: white;
+        font-family: 'Courier New', monospace;
+    }
+
+    /* 3. Estilos del Ticket Impreso */
+    #print-area .order-ticket {
+        border: none;
+        box-shadow: none;
+        padding: 5px;
+    }
+
+    #print-area .order-header {
+        text-align: center;
+        border-bottom: 2px dashed #000;
+        margin-bottom: 10px;
+    }
+
+    #print-area .order-items-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    #print-area li {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    #print-area .total-line {
+        border-top: 1px solid #000;
+        text-align: right;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Ocultar botones e interfaces */
+    #print-area button,
+    #print-area .action-btn,
+    #print-area .fab-cart {
+        display: none !important;
+    }
 }

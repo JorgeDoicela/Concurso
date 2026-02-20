@@ -119,43 +119,21 @@ const app = {
         app.actualizarContadorCarrito();
     },
 
-    // --- Utilidades de Impresión (Estrategia Popup Infalible) ---
-    // Crea una ventana nueva, escribe el ticket y la manda a imprimir.
-    // Evita problemas de "ocultar cosas" en la app principal.
+    // --- Utilidades de Impresión (Estrategia Staging Area) ---
+    // Clona el ticket a un div limpio en el root del body e imprime.
     imprimirElemento: (el) => {
-        const ventana = window.open('', 'ImpresionGastrosync', 'height=600,width=400');
+        const stagingArea = document.getElementById('print-area');
 
-        ventana.document.write(`
-            <html>
-                <head>
-                    <title>Ticket Cocina</title>
-                    <style>
-                        body { font-family: 'Courier New', monospace; width: 80mm; margin: 0 auto; padding: 10px; }
-                        ul { list-style: none; padding: 0; }
-                        li { display: flex; justify-content: space-between; margin-bottom: 5px; }
-                        
-                        /* Ocultar botones clonados */
-                        button { display: none !important; }
-                        
-                        .order-header { text-align: center; border-bottom: 1px dashed black; margin-bottom: 10px; padding-bottom: 5px; }
-                        .order-id { font-size: 1.2rem; font-weight: bold; }
-                        .total-line { border-top: 1px solid black; margin-top: 10px; padding-top: 5px; text-align: right; font-weight: bold; }
-                    </style>
-                </head>
-                <body>
-                    ${el.innerHTML}
-                </body>
-            </html>
-        `);
+        // 1. Limpiar y Clonar
+        stagingArea.innerHTML = '';
+        stagingArea.appendChild(el.cloneNode(true)); // cloneNode(true) copia hijos
 
-        ventana.document.close();
-        ventana.focus();
+        // 2. Imprimir
+        // No necesitamos timeouts raros porque el DOM es síncrono y el CSS maneja la visibilidad
+        window.print();
 
-        // Pequeño delay para asegurar carga de estilos
-        setTimeout(() => {
-            ventana.print();
-            ventana.close();
-        }, 500);
+        // 3. Limpiar después (Opcional, pero bueno para mantener el DOM limpio)
+        stagingArea.innerHTML = '';
     },
 
     // --- Funciones de Pedido ---
